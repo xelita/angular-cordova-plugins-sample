@@ -1,0 +1,52 @@
+<ion-view title="Geolocation">
+    <ion-content class="has-header">
+        <!-- api version -->
+        <div class="padding" ng-show="{{demoIndex}} == 1">
+            {{apiVersion}}
+        </div>
+
+        <!-- cordova supported version -->
+        <div class="padding" ng-show="{{demoIndex}} == 2">
+            {{cordovaVersion}}
+        </div>
+
+        <!-- get current position action -->
+        <div class="padding" ng-show="{{demoIndex}} == 3">
+            <button class="button button-block button-outline button-positive" ng-click="getCurrentPosition()">
+                Get Current Position!
+            </button>
+            <div ng-show="currentPosition">
+                <div>
+                    <div class="text-center"><i class="icon ion-ios7-navigate positive"></i></div>
+                    <div class="text-center">Lat. {{currentPosition.coords.latitude}},
+                        Long. {{currentPosition.coords.longitude}}</div>
+                </div>
+                <div class="padding-top">
+                    <div class="text-center"><i class="icon ion-ios7-time positive"></i></div>
+                    <div class="text-center">Last Update: {{currentPosition.timestamp}}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- watch current position action -->
+        <div class="padding" ng-show="{{demoIndex}} == 4">
+            <button class="button button-block button-outline button-positive" ng-click="startWatchingPosition()" ng-if="!watchId">
+                Start Watching Position!
+            </button>
+            <button class="button button-block button-outline button-positive" ng-click="stopWatchingPosition()" ng-if="watchId">
+                Stop Watching Position!
+            </button>
+            <div ng-show="currentPosition">
+                <div>
+                    <div class="text-center"><i class="icon ion-ios7-navigate positive"></i></div>
+                    <div class="text-center">Lat. {{currentPosition.coords.latitude}},
+                        Long. {{currentPosition.coords.longitude}}</div>
+                </div>
+                <div class="padding-top">
+                    <div class="text-center"><i class="icon ion-ios7-time positive"></i></div>
+                    <div class="text-center">Last Update: {{currentPosition.timestamp}}</div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

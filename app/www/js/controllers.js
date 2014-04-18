@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['cordovaVibrationModule', 'cordovaGeolocationModule'])
+angular.module('starter.controllers', ['cordovaDeviceModule', 'cordovaVibrationModule', 'cordovaGeolocationModule'])
 
     // Application Controller
 
@@ -16,6 +16,35 @@ angular.module('starter.controllers', ['cordovaVibrationModule', 'cordovaGeoloca
         $scope.openUrl = function (url) {
             window.open(url, '_system');
         }
+    })
+
+    // Angular Cordova Plugin Device
+
+    .controller('DeviceCtrl', function ($scope, $stateParams) {
+        $scope.items = [
+            {id: 1, name: 'API Version'},
+            {id: 2, name: 'Cordova Version'},
+            {id: 3, name: 'Device Cordova Version'},
+            {id: 4, name: 'Device Platform'},
+            {id: 5, name: 'Device UUID'},
+            {id: 6, name: 'Device Version'},
+            {id: 7, name: 'Device Model'}
+        ];
+    })
+
+    .controller('DeviceDemoCtrl', function ($scope, $stateParams, cordovaDeviceService) {
+
+        $scope.demoIndex = $stateParams.itemId;
+
+        // API demonstration
+
+        $scope.apiVersion = cordovaDeviceService.apiVersion();
+        $scope.cordovaVersion = cordovaDeviceService.cordovaVersion();
+        $scope.cordova = cordovaDeviceService.cordova();
+        $scope.platform = cordovaDeviceService.platform();
+        $scope.uuid = cordovaDeviceService.uuid();
+        $scope.version = cordovaDeviceService.version();
+        $scope.model = cordovaDeviceService.model();
     })
 
     // Angular Cordova Plugin Vibration
