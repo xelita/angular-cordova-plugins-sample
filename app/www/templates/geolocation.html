@@ -1,0 +1,13 @@
+<ion-view title="Geolocation">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <ion-list>
+            <ion-item ng-repeat="item in items" href="#/app/geolocation/{{item.id}}">
+                <i class="icon ion-ios7-bolt"></i>
+                {{item.name}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -54,6 +54,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
                 }
             })
 
+            .state('app.geolocation', {
+                url: "/geolocation",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/geolocation.html",
+                        controller: "GeolocationCtrl"
+                    }
+                }
+            })
+
+            .state('app.geolocation-item', {
+                url: "/geolocation/:itemId",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/geolocation-item.html",
+                        controller: "GeolocationDemoCtrl"
+                    }
+                }
+            })
+
             .state('app.about', {
                 url: "/about",
                 views: {
