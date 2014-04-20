@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['cordovaDeviceModule', 'cordovaVibrationModule', 'cordovaGeolocationModule'])
+angular.module('starter.controllers', ['cordovaDeviceModule', 'cordovaDeviceMotionModule', 'cordovaVibrationModule', 'cordovaGeolocationModule'])
 
     // Application Controller
 
@@ -16,6 +16,51 @@ angular.module('starter.controllers', ['cordovaDeviceModule', 'cordovaVibrationM
         $scope.openUrl = function (url) {
             window.open(url, '_system');
         }
+    })
+
+    // Angular Cordova Plugin Device Motion
+
+    .controller('DeviceMotionCtrl', function ($scope, $stateParams) {
+        $scope.items = [
+            {id: 1, name: 'API Version'},
+            {id: 2, name: 'Cordova Version'},
+            {id: 3, name: 'Get Current Acceleration'},
+            {id: 4, name: 'Watch Current Acceleration'}
+        ];
+    })
+
+    .controller('DeviceMotionDemoCtrl', function ($scope, $stateParams, cordovaDeviceMotionService) {
+
+        $scope.demoIndex = $stateParams.itemId;
+
+        // API demonstration
+
+        $scope.apiVersion = cordovaDeviceMotionService.apiVersion();
+        $scope.cordovaVersion = cordovaDeviceMotionService.cordovaVersion();
+
+        $scope.getCurrentAcceleration = function () {
+            cordovaDeviceMotionService.getCurrentAcceleration(successHandler, errorHandler);
+        };
+
+        $scope.startWatchingAcceleration = function () {
+            $scope.watchId = cordovaDeviceMotionService.watchAcceleration(successHandler, errorHandler);
+        };
+
+        $scope.stopWatchingAcceleration = function () {
+            cordovaDeviceMotionService.clearWatch($scope.watchId);
+            $scope.watchId = null;
+            $scope.currentAcceleration = null;
+        };
+
+        // Handlers
+
+        var successHandler = function (acceleration) {
+            $scope.currentAcceleration = acceleration;
+        };
+
+        var errorHandler = function (error) {
+            alert(error);
+        };
     })
 
     // Angular Cordova Plugin Device
@@ -40,6 +85,7 @@ angular.module('starter.controllers', ['cordovaDeviceModule', 'cordovaVibrationM
 
         $scope.apiVersion = cordovaDeviceService.apiVersion();
         $scope.cordovaVersion = cordovaDeviceService.cordovaVersion();
+
         $scope.cordova = cordovaDeviceService.cordova();
         $scope.platform = cordovaDeviceService.platform();
         $scope.uuid = cordovaDeviceService.uuid();
@@ -65,6 +111,7 @@ angular.module('starter.controllers', ['cordovaDeviceModule', 'cordovaVibrationM
 
         $scope.apiVersion = cordovaVibrationService.apiVersion();
         $scope.cordovaVersion = cordovaVibrationService.cordovaVersion();
+
         $scope.vibrate = function (ms) {
             cordovaVibrationService.vibrate(ms);
         };
@@ -109,5 +156,5 @@ angular.module('starter.controllers', ['cordovaDeviceModule', 'cordovaVibrationM
         var successHandler = function (position) {
             $scope.currentPosition = position;
         };
-    })
+    });
 

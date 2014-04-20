@@ -54,6 +54,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
                 }
             })
 
+            .state('app.device-motion', {
+                url: "/device-motion",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/device-motion.html",
+                        controller: "DeviceMotionCtrl"
+                    }
+                }
+            })
+
+            .state('app.device-motion-item', {
+                url: "/device-motion/:itemId",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/device-motion-item.html",
+                        controller: "DeviceMotionDemoCtrl"
+                    }
+                }
+            })
+
             .state('app.vibration', {
                 url: "/vibration",
                 views: {

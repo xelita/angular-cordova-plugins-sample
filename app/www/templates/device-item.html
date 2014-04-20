@@ -1,0 +1,38 @@
+<ion-view title="Device">
+    <ion-content class="has-header">
+        <!-- api version -->
+        <div class="padding" ng-show="{{demoIndex}} == 1">
+            {{apiVersion}}
+        </div>
+
+        <!-- cordova supported version -->
+        <div class="padding" ng-show="{{demoIndex}} == 2">
+            {{cordovaVersion}}
+        </div>
+
+        <!-- device cordova -->
+        <div class="padding" ng-show="{{demoIndex}} == 3">
+            {{cordova}}
+        </div>
+
+        <!-- device platform -->
+        <div class="padding" ng-show="{{demoIndex}} == 4">
+            {{platform}}
+        </div>
+
+        <!-- device uuid -->
+        <div class="padding" ng-show="{{demoIndex}} == 5">
+            {{uuid}}
+        </div>
+
+        <!-- device version -->
+        <div class="padding" ng-show="{{demoIndex}} == 6">
+            {{version}}
+        </div>
+
+        <!-- device model -->
+        <div class="padding" ng-show="{{demoIndex}} == 7">
+            {{model}}
+        </div>
+    </ion-content>
+</ion-view>
