@@ -1,0 +1,23 @@
+<ion-view title="Device">
+    <ion-content class="has-header">
+        <!-- api version -->
+        <div class="padding" ng-show="{{demoIndex}} == 1">
+            {{apiVersion}}
+        </div>
+
+        <!-- cordova supported version -->
+        <div class="padding" ng-show="{{demoIndex}} == 2">
+            {{cordovaVersion}}
+        </div>
+
+        <!-- network connection type -->
+        <div class="padding" ng-show="{{demoIndex}} == 3">
+            {{connectionType}}
+        </div>
+
+        <!-- network connection status listener -->
+        <div class="padding" ng-show="{{demoIndex}} == 4" ng-init="initNetworkStatusHandlers()">
+            Handlers are registered, it is time to play with your Network connection...
+        </div>
+    </ion-content>
+</ion-view>

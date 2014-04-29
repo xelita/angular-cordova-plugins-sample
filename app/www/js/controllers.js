@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['cordovaDeviceModule', 'cordovaDeviceMotionModule', 'cordovaVibrationModule', 'cordovaGeolocationModule'])
+angular.module('starter.controllers', ['cordovaDeviceModule', 'cordovaDeviceMotionModule', 'cordovaNetworkInformationModule', 'cordovaVibrationModule', 'cordovaGeolocationModule'])
 
     // Application Controller
 
@@ -91,6 +91,44 @@ angular.module('starter.controllers', ['cordovaDeviceModule', 'cordovaDeviceMoti
         $scope.uuid = cordovaDeviceService.uuid();
         $scope.version = cordovaDeviceService.version();
         $scope.model = cordovaDeviceService.model();
+    })
+
+    // Angular Cordova Plugin Network Information
+
+    .controller('NetworkInformationCtrl', function ($scope, $stateParams) {
+        $scope.items = [
+            {id: 1, name: 'API Version'},
+            {id: 2, name: 'Cordova Version'},
+            {id: 3, name: 'Network Connection Type'},
+            {id: 4, name: 'Network Status Listener'}
+        ];
+    })
+
+    .controller('NetworkInformationDemoCtrl', function ($scope, $stateParams, cordovaNetworkInformationService, cordovaNetworkInformationConstants) {
+
+        $scope.demoIndex = $stateParams.itemId;
+
+        // API demonstration
+
+        $scope.apiVersion = cordovaNetworkInformationService.apiVersion();
+        $scope.cordovaVersion = cordovaNetworkInformationService.cordovaVersion();
+
+        $scope.connectionType = cordovaNetworkInformationService.getConnectionType();
+
+        $scope.initNetworkStatusHandlers = function () {
+            cordovaNetworkInformationService.addConnectionStatusChangedListener(cordovaNetworkInformationConstants.connectionStatusEvent.online, onOnline);
+            cordovaNetworkInformationService.addConnectionStatusChangedListener(cordovaNetworkInformationConstants.connectionStatusEvent.offline, onOffline);
+        };
+
+        // Handlers
+
+        function onOnline() {
+            alert('You are online');
+        }
+
+        function onOffline() {
+            alert('You are offline');
+        }
     })
 
     // Angular Cordova Plugin Vibration

@@ -22,6 +22,7 @@ cordova plugin add org.apache.cordova.inappbrowser
 cordova plugin add org.apache.cordova.statusbar
 cordova plugin add org.apache.cordova.vibration
 cordova plugin add org.apache.cordova.geolocation
+cordova plugin add org.apache.cordova.network-information
 ```
 
 To play with the application on iOS simulator, type:

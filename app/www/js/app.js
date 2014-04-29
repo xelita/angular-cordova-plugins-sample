@@ -74,6 +74,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
                 }
             })
 
+            .state('app.network-information', {
+                url: "/network-information",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/network-information.html",
+                        controller: "NetworkInformationCtrl"
+                    }
+                }
+            })
+
+            .state('app.network-information-item', {
+                url: "/network-information/:itemId",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/network-information-item.html",
+                        controller: "NetworkInformationDemoCtrl"
+                    }
+                }
+            })
+
             .state('app.vibration', {
                 url: "/vibration",
                 views: {
