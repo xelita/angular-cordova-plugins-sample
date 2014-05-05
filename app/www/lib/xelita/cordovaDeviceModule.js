@@ -1,5 +1,6 @@
 /**
- * Angular Module relying on Apache Cordova Geolocation Plugin (cordova plugin add org.apache.cordova.device).
+ * Angular Module relying on Apache Cordova Network Information Plugin (cordova plugin add org.apache.cordova.device).
+ * For more information: https://github.com/apache/cordova-plugin-device
  */
 var cordovaDeviceModule = angular.module('cordovaDeviceModule', []);
 
@@ -24,7 +25,7 @@ cordovaDeviceModule.factory('cordovaDeviceService', ['$log', 'cordovaDeviceConst
          * Return the current API version.
          */
         apiVersion: function () {
-            $log.debug('cordovaDeviceConstants.apiVersion.');
+            $log.debug('cordovaDeviceService.apiVersion.');
             return cordovaDeviceConstants.apiVersion;
         },
 
@@ -32,13 +33,13 @@ cordovaDeviceModule.factory('cordovaDeviceService', ['$log', 'cordovaDeviceConst
          * Return the cordova API version.
          */
         cordovaVersion: function () {
-            $log.debug('cordovaGeolocationService.cordovaVersion.');
+            $log.debug('cordovaDeviceConstants.cordovaVersion.');
             return cordovaDeviceConstants.cordovaVersion;
         },
 
         /**
          * Get the version of Cordova running on the device.
-         * For more information: https://github.com/apache/cordova-plugin-device/blob/dev/doc/index.md#devicecordova
+         * For more information: https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#devicecordova
          */
         cordova: function () {
             $log.debug('cordovaDeviceService.cordova.');
@@ -47,7 +48,7 @@ cordovaDeviceModule.factory('cordovaDeviceService', ['$log', 'cordovaDeviceConst
 
         /**
          * Get the device's operating system name.
-         * For more information: https://github.com/apache/cordova-plugin-device/blob/dev/doc/index.md#deviceplatform
+         * For more information: https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceplatform
          */
         platform: function () {
             $log.debug('cordovaDeviceService.platform.');
@@ -56,7 +57,7 @@ cordovaDeviceModule.factory('cordovaDeviceService', ['$log', 'cordovaDeviceConst
 
         /**
          * Get the device's Universally Unique Identifier (UUID).
-         * For more information: https://github.com/apache/cordova-plugin-device/blob/dev/doc/index.md#deviceuuid
+         * For more information: https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceuuid
          */
         uuid: function () {
             $log.debug('cordovaDeviceService.uuid.');
@@ -65,7 +66,7 @@ cordovaDeviceModule.factory('cordovaDeviceService', ['$log', 'cordovaDeviceConst
 
         /**
          * Get the operating system version.
-         * For more information: https://github.com/apache/cordova-plugin-device/blob/dev/doc/index.md#deviceversion
+         * For more information: https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#deviceversion
          */
         version: function () {
             $log.debug('cordovaDeviceService.version.');
@@ -74,7 +75,7 @@ cordovaDeviceModule.factory('cordovaDeviceService', ['$log', 'cordovaDeviceConst
 
         /**
          * The device.model returns the name of the device's model or product.
-         * For more information: https://github.com/apache/cordova-plugin-device/blob/dev/doc/index.md#devicemodel
+         * For more information: https://github.com/apache/cordova-plugin-device/blob/master/doc/index.md#devicemodel
          */
         model: function () {
             $log.debug('cordovaDeviceService.model.');
@@ -94,4 +95,16 @@ cordovaDeviceModule.factory('cordovaDeviceService', ['$log', 'cordovaDeviceConst
             return window.device[name];
         }
     };
+}]);
+
+
+// Controllers
+
+/**
+ * Convenience controller that registers service in its scope.
+ */
+cordovaDeviceModule.controller('CordovaDeviceCtrl', ['$scope', 'cordovaDeviceService' , function ($scope, cordovaDeviceService) {
+
+    // Export the cordovaDeviceService in the controller scope in order to make it accessible directly
+    $scope.deviceService = cordovaDeviceService;
 }]);
